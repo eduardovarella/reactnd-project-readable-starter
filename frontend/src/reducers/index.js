@@ -1,29 +1,24 @@
 import { combineReducers } from 'redux'
 
-/*
 import {
-  ADD_RECIPE,
-  REMOVE_FROM_CALENDAR,
+  LIST_ALL_CATEGORIES
 } from '../actions'
-*/
 
-const initialState = {}
+const initialState = {
+  categories: [],
+  posts: []
+}
 
 function defaultReducer (state = initialState, action) {
-    /*
   switch (action.type) {
-    case ADD_RECIPE :
-      const { recipe } = action
-
+    case LIST_ALL_CATEGORIES:
       return {
         ...state,
-        [recipe.label]: recipe,
+        categories: action.categories,
       }
     default :
       return state
   }
-  */
- return state
 }
 
 export default combineReducers({

@@ -137,7 +137,7 @@ export const updateComment = (comment) =>
         ...headers,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ post })
+      body: JSON.stringify({ comment })
     }).then(res => res.json())
       .then(data => data)
      
