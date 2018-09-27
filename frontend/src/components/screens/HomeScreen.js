@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchAllPosts } from '../../actions'
 import PostList from '../commons/PostList'
+import PostForm from '../commons/PostForm'
 
 class HomeScreen extends Component {
 
@@ -28,6 +29,7 @@ class HomeScreen extends Component {
           { !loading && 
             <PostList posts={posts}/>
         }
+          <PostForm post={{"id": ""}}/>
         </div>
     )
   }

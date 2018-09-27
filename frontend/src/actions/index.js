@@ -41,3 +41,21 @@ export const receivePosts = posts => ({
 export const fetchPosts = (category) => dispatch => (
     API.listPostsByCategory(category).then(posts => dispatch(receivePosts(posts)))
 );
+
+export const receiveAddPost = post => ({
+    type: ADD_POST,
+    post
+  });
+  
+export const addPost = (post) => dispatch => {
+    return API.addPost(post).then(post => dispatch(receiveAddPost(post)))
+};
+
+export const receiveEditPost = post => ({
+    type: UPDATE_POST,
+    post
+  });
+  
+export const editPost = (post) => dispatch => (
+    API.updatePost(post).then(post => dispatch(receiveEditPost(post)))
+);

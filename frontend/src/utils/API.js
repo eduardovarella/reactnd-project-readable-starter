@@ -2,14 +2,9 @@
 const api = "http://localhost:3001"
 
 
-// Generate a unique token for storing your bookshelf data on the backend server.
-let token = localStorage.token
-if (!token)
-  token = localStorage.token = Math.random().toString(36).substr(-8)
-
 const headers = {
   'Accept': 'application/json',
-  'Authorization': token
+  'Authorization': '123'
 }
 
 export const listCategories = () =>
@@ -18,7 +13,7 @@ export const listCategories = () =>
     .then(data => data.categories)
 
 export const listPosts = () =>
-  fetch(`${api}/posts`, { headers })
+  fetch(`${api}/posts?d=` + Date.now(), { headers })
     .then(res => res.json())
     .then(data => data)
 
@@ -27,16 +22,17 @@ export const listPostsByCategory = (categoryId) =>
     .then(res => res.json())
     .then(data => data)
 
-export const addPost = (post) =>
-  fetch(`${api}/posts`, {
+export const addPost = (post) => {
+  return fetch(`${api}/posts`, {
       method: 'POST',
       headers: {
         ...headers,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ post })
+      body: JSON.stringify(post)
     }).then(res => res.json())
       .then(data => data)
+  }
 
 export const getPost = (postId) =>
   fetch(`${api}/posts/${postId}`, { headers })
@@ -72,7 +68,7 @@ export const updatePost = (post) =>
         ...headers,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ post })
+      body: JSON.stringify(post)
     }).then(res => res.json())
       .then(data => data)
    
@@ -99,7 +95,7 @@ export const addComment = (comment) =>
         ...headers,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ comment })
+      body: JSON.stringify(comment)
     }).then(res => res.json())
       .then(data => data)
 
@@ -137,7 +133,7 @@ export const updateComment = (comment) =>
         ...headers,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ comment })
+      body: JSON.stringify(comment)
     }).then(res => res.json())
       .then(data => data)
      
