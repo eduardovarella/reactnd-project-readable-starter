@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchAllPosts } from '../../actions'
+import PostList from '../commons/PostList'
 
 class HomeScreen extends Component {
 
@@ -25,13 +26,7 @@ class HomeScreen extends Component {
           <b>all categories</b>
           { loading && <p>Carregando</p>}
           { !loading && 
-            <div>
-            <ul>
-                {posts.map((post) => (
-                  <div key={post.id}>{post.title}</div>
-                ))}
-              </ul>
-            </div>
+            <PostList posts={posts}/>
         }
         </div>
     )

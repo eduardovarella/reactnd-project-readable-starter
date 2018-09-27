@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchPosts } from '../../actions'
+import PostList from '../commons/PostList'
 
 class CategoryScreen extends Component {
   state = {
@@ -41,13 +42,7 @@ class CategoryScreen extends Component {
           <b>category: {categoryId}</b>
           { loading && <p>Carregando</p>}
           { !loading && 
-            <div>
-            <ul>
-                {posts.map((post) => (
-                  <div key={post.id}>{post.title}</div>
-                ))}
-              </ul>
-            </div>
+            <PostList posts={posts}/>
         }
         </div>
     )
