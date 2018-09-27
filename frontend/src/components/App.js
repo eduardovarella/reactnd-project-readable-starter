@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import logo from './logo.svg';
 import { fetchCategories } from '../actions'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import CategoryScreen from './screens/CategoryScreen';
+
 import './App.css';
 
 class App extends Component {
@@ -21,19 +24,28 @@ class App extends Component {
     const { loading } = this.state
     const { categories } = this.props
     return (
-
+      <Router>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        { loading && (<p>Carregando</p>)}
-        { !loading && (
-          categories.map((category) => (
-            <p>{category.name}</p>
-          ))
-        )}
+        <ul>
+          <Link to='/'>all</Link>
+          {
+            categories.map((category) => (
+              <span key={category.name}>
+                <span> |</span> <Link to={category.name}>{category.name}</Link>
+              </span>
+              )
+            )
+          }
+        </ul>
+        
+        <Route exact path="/" render={() => (
+          <HomeScreen/>
+        )}/>
+        <Route path="/:category" render={({ match }) => (
+          <CategoryScreen categoryId={match.params.category}/>
+        )}/>
       </div>
+      </Router>
     );
   }
 }
