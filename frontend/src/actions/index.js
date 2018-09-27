@@ -23,3 +23,21 @@ export const receiveAllCategories = categories => ({
 export const fetchCategories = () => dispatch => (
     API.listCategories().then(categories => dispatch(receiveAllCategories(categories)))
 );
+
+export const receiveAllPosts = posts => ({
+    type: LIST_ALL_POSTS,
+    posts
+  });
+  
+export const fetchAllPosts = () => dispatch => (
+    API.listPosts().then(posts => dispatch(receiveAllPosts(posts)))
+);
+
+export const receivePosts = posts => ({
+    type: LIST_POSTS_BY_CATEGORY,
+    posts
+  });
+  
+export const fetchPosts = (category) => dispatch => (
+    API.listPostsByCategory(category).then(posts => dispatch(receivePosts(posts)))
+);

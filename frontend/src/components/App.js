@@ -26,6 +26,8 @@ class App extends Component {
     return (
       <Router>
       <div className="App">
+        { loading && <p>Carregando</p>}
+        { !loading && <div>
         <ul>
           <Link to='/'>all</Link>
           {
@@ -44,6 +46,7 @@ class App extends Component {
         <Route path="/:category" render={({ match }) => (
           <CategoryScreen categoryId={match.params.category}/>
         )}/>
+        </div>}
       </div>
       </Router>
     );
